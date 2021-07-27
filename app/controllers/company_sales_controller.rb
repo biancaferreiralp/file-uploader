@@ -41,6 +41,18 @@ class CompanySalesController < ApplicationController
     redirect_to company_sales_path
   end
 
+  def import
+    file = params[:file]
+
+    CSV.foreach(file.path, headers: true, col_sep: "\t") do |row|
+      data = row.to_hash
+      data.keys.each { |key| data[key.tr(" ", "_")] = data.delete(key) }
+      data["user_id"] = current_user.id
+      company_sale = CompanySale.create!(data)
+    end
+    redirect_to company_sales_path
+  end
+
   private
   
   def set_company_sale

@@ -1,5 +1,11 @@
 <%= link_to 'Register new sale', new_company_sale_path %>
 
+<h3>Import file</h3>
+<%= form_tag import_company_sales_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag 'Upload' %>
+<% end %>
+
 <table>
   <thead>
     <tr>
