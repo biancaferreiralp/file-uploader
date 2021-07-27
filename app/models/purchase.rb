@@ -1,6 +1,7 @@
 class Purchase < ApplicationRecord
-  has_many :items
+  belongs_to :company_sale
   belongs_to :purchaser
+  has_many :items
 
   validates :count, presence: true
 end
