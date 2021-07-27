@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_27_105846) do
+ActiveRecord::Schema.define(version: 2021_07_27_110437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 2021_07_27_105846) do
     t.bigint "purchase_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "company_sale_id", null: false
+    t.index ["company_sale_id"], name: "index_items_on_company_sale_id"
     t.index ["merchant_id"], name: "index_items_on_merchant_id"
     t.index ["purchase_id"], name: "index_items_on_purchase_id"
   end
@@ -44,12 +46,16 @@ ActiveRecord::Schema.define(version: 2021_07_27_105846) do
     t.string "address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "company_sale_id", null: false
+    t.index ["company_sale_id"], name: "index_merchants_on_company_sale_id"
   end
 
   create_table "purchasers", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "company_sale_id", null: false
+    t.index ["company_sale_id"], name: "index_purchasers_on_company_sale_id"
   end
 
   create_table "purchases", force: :cascade do |t|
@@ -57,6 +63,8 @@ ActiveRecord::Schema.define(version: 2021_07_27_105846) do
     t.bigint "purchaser_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "company_sale_id", null: false
+    t.index ["company_sale_id"], name: "index_purchases_on_company_sale_id"
     t.index ["purchaser_id"], name: "index_purchases_on_purchaser_id"
   end
 
@@ -73,7 +81,11 @@ ActiveRecord::Schema.define(version: 2021_07_27_105846) do
   end
 
   add_foreign_key "company_sales", "users"
+  add_foreign_key "items", "company_sales"
   add_foreign_key "items", "merchants"
   add_foreign_key "items", "purchases"
+  add_foreign_key "merchants", "company_sales"
+  add_foreign_key "purchasers", "company_sales"
+  add_foreign_key "purchases", "company_sales"
   add_foreign_key "purchases", "purchasers"
 end
