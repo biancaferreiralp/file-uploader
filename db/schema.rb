@@ -10,22 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_27_094911) do
+ActiveRecord::Schema.define(version: 2021_07_27_095756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "company_sales", force: :cascade do |t|
-    t.string "purchaser_name"
-    t.string "item_description"
-    t.float "item_price"
-    t.integer "purchase_count"
-    t.string "merchant_address"
-    t.string "merchant_name"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "filename"
+    t.bigint "purchaser_id", null: false
+    t.bigint "purchase_id", null: false
+    t.bigint "merchant_id", null: false
+    t.bigint "item_id", null: false
+    t.index ["item_id"], name: "index_company_sales_on_item_id"
+    t.index ["merchant_id"], name: "index_company_sales_on_merchant_id"
+    t.index ["purchase_id"], name: "index_company_sales_on_purchase_id"
+    t.index ["purchaser_id"], name: "index_company_sales_on_purchaser_id"
     t.index ["user_id"], name: "index_company_sales_on_user_id"
   end
 
@@ -73,6 +74,10 @@ ActiveRecord::Schema.define(version: 2021_07_27_094911) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "company_sales", "items"
+  add_foreign_key "company_sales", "merchants"
+  add_foreign_key "company_sales", "purchasers"
+  add_foreign_key "company_sales", "purchases"
   add_foreign_key "company_sales", "users"
   add_foreign_key "items", "merchants"
   add_foreign_key "items", "purchases"
