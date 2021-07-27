@@ -1,0 +1,9 @@
+<%= simple_form_for(@company_sale) do |f| %>
+  <%= f.input :purchaser_name %>
+  <%= f.input :item_description %>
+  <%= f.input :item_price %>
+  <%= f.input :purchase_count %>
+  <%= f.input :merchant_address %>
+  <%= f.input :merchant_name %>
+  <%= f.submit 'Save' %>
+<% end %>
