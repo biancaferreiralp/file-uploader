@@ -3,7 +3,7 @@
 
 <h3>Import file</h3>
 <%= form_tag import_company_sales_path, multipart: true do %>
-  <%= file_field_tag :file %>
+  <%= file_field_tag :file, required: true %>
   <%= submit_tag 'Upload' %>
 <% end %>
 
