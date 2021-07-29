@@ -37,10 +37,6 @@ class CompanySalesController < ApplicationController
 
   private
 
-  def company_sale_params
-    params.require(:company_sale).permit(:purchaser_name, :item_description, :item_price, :purchase_count, :merchant_address, :merchant_name)
-  end
-
   def create_associate_data(purchaser_name, merchant_name, merchant_address, item_description, item_price)
     @purchaser = Purchaser.find_or_create_by(name: purchaser_name)
     @merchant = Merchant.find_or_create_by(name: merchant_name, address: merchant_address)
