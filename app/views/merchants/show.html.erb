@@ -15,7 +15,7 @@
   <tbody>
     <% @purchasers.each do |p| %>
       <tr>
-        <td><%= p.name %></td>
+        <td><%= link_to p.name, purchaser_path(p.id) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -62,7 +62,7 @@
   <tbody>
     <% @company_sales.each do |s| %>
       <tr>
-        <td><%= s.purchaser_name %></td>
+        <td><%= link_to s.purchaser_name, purchaser_path(s.purchaser.id) %></td>
         <td><%= s.item_description %></td>
         <td><%= s.item_price %></td>
         <td><%= s.purchase_count %></td>

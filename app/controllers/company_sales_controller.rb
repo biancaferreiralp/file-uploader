@@ -1,19 +1,11 @@
 class CompanySalesController < ApplicationController
-
   def index
-    @company_sales = current_user.company_sales.all
+    @company_sales = current_user.company_sales
 
     @total_income = 0
     @company_sales.each do |s|
       @total_income += s.item_price * s.purchase_count
     end
-  end
-
-  def destroy
-    @company_sale = CompanySale.find(params[:id])
-    @company_sale.destroy
-
-    redirect_to company_sales_path
   end
 
   def import

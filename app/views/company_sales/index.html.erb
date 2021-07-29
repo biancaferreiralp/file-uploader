@@ -1,3 +1,6 @@
+<%= link_to 'All merchants', merchants_path %>
+<%= link_to 'All purchasers', purchasers_path %>
+
 <h3>Import file</h3>
 <%= form_tag import_company_sales_path, multipart: true do %>
   <%= file_field_tag :file %>
@@ -25,14 +28,13 @@
   <tbody>
     <% @company_sales.each do |s| %>
       <tr>
-        <td><%= s.purchaser_name %></td>
+        <td><%= link_to s.purchaser_name, purchaser_path(s.purchaser.id) %></td>
         <td><%= s.item_description %></td>
         <td><%= s.item_price %></td>
         <td><%= s.purchase_count %></td>
         <td><%= s.merchant_address %></td>
-        <td><%= s.merchant_name %></td>
+        <td><%= link_to s.merchant_name, merchant_path(s.merchant.id) %></td>
         <td><%= (s.item_price * s.purchase_count).truncate(2) %></td>
-        <td><%= link_to 'Delete sale', company_sale_path(s.id), method: :delete, data: { confirm: 'Delete sale?' } %></td>
       </tr>
     <% end %>
   </tbody>
