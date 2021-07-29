@@ -1,5 +1,5 @@
 class Merchant < ApplicationRecord
-  belongs_to :company_sale
+  has_many :company_sales
   has_many :items, dependent: :destroy
 
   validates :name, :address, presence: true
