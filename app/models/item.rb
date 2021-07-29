@@ -1,7 +1,6 @@
 class Item < ApplicationRecord
-  belongs_to :company_sale
+  has_many :company_sales
   belongs_to :merchant
-  belongs_to :purchase
 
   validates :description, :price, presence: true
 end

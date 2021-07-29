@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_27_110437) do
+ActiveRecord::Schema.define(version: 2021_07_28_163656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,12 @@ ActiveRecord::Schema.define(version: 2021_07_27_110437) do
     t.integer "purchase_count"
     t.string "merchant_address"
     t.string "merchant_name"
+    t.bigint "purchaser_id", null: false
+    t.bigint "merchant_id", null: false
+    t.bigint "item_id", null: false
+    t.index ["item_id"], name: "index_company_sales_on_item_id"
+    t.index ["merchant_id"], name: "index_company_sales_on_merchant_id"
+    t.index ["purchaser_id"], name: "index_company_sales_on_purchaser_id"
     t.index ["user_id"], name: "index_company_sales_on_user_id"
   end
 
@@ -32,13 +38,9 @@ ActiveRecord::Schema.define(version: 2021_07_27_110437) do
     t.string "description"
     t.float "price"
     t.bigint "merchant_id", null: false
-    t.bigint "purchase_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "company_sale_id", null: false
-    t.index ["company_sale_id"], name: "index_items_on_company_sale_id"
     t.index ["merchant_id"], name: "index_items_on_merchant_id"
-    t.index ["purchase_id"], name: "index_items_on_purchase_id"
   end
 
   create_table "merchants", force: :cascade do |t|
@@ -46,26 +48,12 @@ ActiveRecord::Schema.define(version: 2021_07_27_110437) do
     t.string "address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "company_sale_id", null: false
-    t.index ["company_sale_id"], name: "index_merchants_on_company_sale_id"
   end
 
   create_table "purchasers", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "company_sale_id", null: false
-    t.index ["company_sale_id"], name: "index_purchasers_on_company_sale_id"
-  end
-
-  create_table "purchases", force: :cascade do |t|
-    t.integer "count"
-    t.bigint "purchaser_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "company_sale_id", null: false
-    t.index ["company_sale_id"], name: "index_purchases_on_company_sale_id"
-    t.index ["purchaser_id"], name: "index_purchases_on_purchaser_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -80,12 +68,9 @@ ActiveRecord::Schema.define(version: 2021_07_27_110437) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "company_sales", "items"
+  add_foreign_key "company_sales", "merchants"
+  add_foreign_key "company_sales", "purchasers"
   add_foreign_key "company_sales", "users"
-  add_foreign_key "items", "company_sales"
   add_foreign_key "items", "merchants"
-  add_foreign_key "items", "purchases"
-  add_foreign_key "merchants", "company_sales"
-  add_foreign_key "purchasers", "company_sales"
-  add_foreign_key "purchases", "company_sales"
-  add_foreign_key "purchases", "purchasers"
 end

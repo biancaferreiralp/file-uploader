@@ -1,6 +1,5 @@
 class Purchaser < ApplicationRecord
-  belongs_to :company_sale
-  has_many :purchases, dependent: :destroy
+  has_many :company_sales
 
   validates :name, presence: true
 end

@@ -1,5 +1,3 @@
-<%= link_to 'Register new sale', new_company_sale_path %>
-
 <h3>Import file</h3>
 <%= form_tag import_company_sales_path, multipart: true do %>
   <%= file_field_tag :file %>
@@ -34,7 +32,6 @@
         <td><%= s.merchant_address %></td>
         <td><%= s.merchant_name %></td>
         <td><%= (s.item_price * s.purchase_count).truncate(2) %></td>
-        <td><%= link_to 'Edit sale', edit_company_sale_path(s.id) %></td>
         <td><%= link_to 'Delete sale', company_sale_path(s.id), method: :delete, data: { confirm: 'Delete sale?' } %></td>
       </tr>
     <% end %>
