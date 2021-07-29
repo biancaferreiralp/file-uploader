@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :company_sales
+  has_many :merchants, through: :company_sales
 end

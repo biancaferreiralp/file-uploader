@@ -1,0 +1,75 @@
+<h1><%= @merchant.name %></h1>
+<h3><%= @merchant.address %></h3>
+
+<%= link_to 'Home', root_path %>
+<%= link_to 'Back To Merchants', merchants_path %>
+
+<h4>Purchasers</h4>
+<table>
+  <thead>
+    <tr>
+      <th>name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @purchasers.each do |p| %>
+      <tr>
+        <td><%= p.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h4>Items</h4>
+<table>
+  <thead>
+    <tr>
+      <th>description</th>
+      <th>current price</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |i| %>
+      <tr>
+        <td><%= i.description %></td>
+        <td><%= i.price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h4>Company sales</h4>
+<table>
+  <thead>
+    <tr>
+      <th>total income</th>
+      <td><%= @total_income.truncate(2) %></td>
+    </tr>
+
+    <tr>
+      <th>purchaser name</th>
+      <th>item description</th>
+      <th>item price</th>
+      <th>purchase count</th>
+      <th>merchant address</th>
+      <th>merchant name</th>
+      <th>gross income</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @company_sales.each do |s| %>
+      <tr>
+        <td><%= s.purchaser_name %></td>
+        <td><%= s.item_description %></td>
+        <td><%= s.item_price %></td>
+        <td><%= s.purchase_count %></td>
+        <td><%= s.merchant_address %></td>
+        <td><%= s.merchant_name %></td>
+        <td><%= (s.item_price * s.purchase_count).truncate(2) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
