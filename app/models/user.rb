@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :company_sales
   has_many :merchants, through: :company_sales
+  has_many :purchasers, through: :company_sales
 end

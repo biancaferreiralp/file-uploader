@@ -1,0 +1,36 @@
+<h1><%= @purchaser.name %></h1>
+
+<%= link_to 'Home', root_path %>
+<%= link_to 'Back To Purchasers', purchasers_path %>
+
+<h4>Purchases</h4>
+<table>
+  <thead>
+    <tr>
+      <th>total spent</th>
+      <td><%= @total_spent.truncate(2) %></td>
+    </tr>
+
+    <tr>
+      <th>item description</th>
+      <th>item price</th>
+      <th>purchase count</th>
+      <th>merchant address</th>
+      <th>merchant name</th>
+      <th>paid</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @purchases.each do |p| %>
+      <tr>
+        <td><%= p.item_description %></td>
+        <td><%= p.item_price %></td>
+        <td><%= p.purchase_count %></td>
+        <td><%= p.merchant_address %></td>
+        <td><%= link_to p.merchant_name, merchant_path(p.merchant.id) %></td>
+        <td><%= (p.item_price * p.purchase_count).truncate(2) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
