@@ -10,8 +10,17 @@
 <table>
   <thead>
     <tr>
+      <th>sales</th>
+      <td><%= @company_sales.count %></td>
+
+      <th>purchasers</th>
+      <td><%= @purchasers.count %></td>
+
+      <th>merchants</th>
+      <td><%= @merchants.count %></td>
+
       <th>total income</th>
-      <td><%= @total_income.truncate(2) %></td>
+      <td><%= @total_income %></td>
     </tr>
 
     <tr>
@@ -34,7 +43,7 @@
         <td><%= s.purchase_count %></td>
         <td><%= s.merchant_address %></td>
         <td><%= link_to s.merchant_name, merchant_path(s.merchant.id) %></td>
-        <td><%= (s.item_price * s.purchase_count).truncate(2) %></td>
+        <td><%= s.gross_income %></td>
       </tr>
     <% end %>
   </tbody>

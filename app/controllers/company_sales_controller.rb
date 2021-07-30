@@ -1,11 +1,10 @@
 class CompanySalesController < ApplicationController
   def index
     @company_sales = current_user.company_sales
-
+    @purchasers = current_user.purchasers
+    @merchants = current_user.merchants
     @total_income = 0
-    @company_sales.each do |s|
-      @total_income += s.item_price * s.purchase_count
-    end
+    @company_sales.each { |s| @total_income += s.gross_income }
   end
 
   def import
