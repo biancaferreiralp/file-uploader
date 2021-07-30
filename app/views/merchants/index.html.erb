@@ -5,6 +5,10 @@
     <tr>
       <th>name</th>
       <th>address</th>
+      <th>items</th>
+      <th>purchasers</th>
+      <th>sales</th>
+      <th>total income</th>
     </tr>
   </thead>
 
@@ -13,6 +17,10 @@
       <tr>
         <td><%= m.name %></td>
         <td><%= m.address %></td>
+        <td><%= m.items.count %></td>
+        <td><%= m.purchasers.count %></td>
+        <td><%= m.company_sales.count %></td>
+        <td><%= m.total_income %></td>
         <td><%= link_to 'Detalhes', merchant_path(m.id) %></td>
       </tr>
     <% end %>
