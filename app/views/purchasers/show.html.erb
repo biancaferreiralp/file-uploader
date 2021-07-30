@@ -3,12 +3,41 @@
 <%= link_to 'Home', root_path %>
 <%= link_to 'Back To Purchasers', purchasers_path %>
 
+<h4>Merchants</h4>
+<table>
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>address</th>
+      <th>purchases</th>
+      <th>total spent</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @merchants.each do |m| %>
+      <tr>
+        <td><%= link_to m.name, merchant_path(m.id) %></td>
+        <td><%= m.address %></td>
+        <td><%= m.company_sales.where(purchaser_id: @purchaser.id).count %></td>
+        <td><%= @purchaser.total_spent_on_company(m) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <h4>Purchases</h4>
 <table>
   <thead>
     <tr>
+      <th>purchases</th>
+      <td><%= @purchases.count %></td>
+
+      <th>merchants</th>
+      <td><%= @merchants.count %></td>
+
       <th>total spent</th>
-      <td><%= @total_spent.truncate(2) %></td>
+      <td><%= @purchaser.total_spent %></td>
     </tr>
 
     <tr>
@@ -29,7 +58,7 @@
         <td><%= p.purchase_count %></td>
         <td><%= p.merchant_address %></td>
         <td><%= link_to p.merchant_name, merchant_path(p.merchant.id) %></td>
-        <td><%= (p.item_price * p.purchase_count).truncate(2) %></td>
+        <td><%= p.gross_income %></td>
       </tr>
     <% end %>
   </tbody>

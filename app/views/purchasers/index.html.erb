@@ -4,6 +4,8 @@
   <thead>
     <tr>
       <th>name</th>
+      <th>purchases</th>
+      <th>total spent</th>
     </tr>
   </thead>
 
@@ -11,6 +13,8 @@
     <% @purchasers.each do |p| %>
       <tr>
         <td><%= p.name %></td>
+        <td><%= p.company_sales.count %></td>
+        <td><%= p.total_spent %></td>
         <td><%= link_to 'Detalhes', purchaser_path(p.id) %></td>
       </tr>
     <% end %>
