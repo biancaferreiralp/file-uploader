@@ -1,19 +1,19 @@
 <div class="sidebar shadow-lg">
   <div class="sidebar-nav">
-    <%= link_to root_path do %>
+    <!-- <%= link_to root_path do %>
       <i class="fas fa-home" title="Home"></i>
-    <% end %>
+    <% end %> -->
 
-    <%= link_to company_sales_path do %>
-      <i class="fas fa-receipt" title="Company Sales"></i>
+    <%= link_to root_path do %>
+      <i class="fas fa-dollar-sign" title="Company Sales"></i>
     <% end %>
 
     <%= link_to merchants_path do %>
-      <i class="fas fa-users" title="Merchants"></i>
+      <i class="fas fa-store" title="Merchants"></i>
     <% end %>
 
     <%= link_to purchasers_path do %>
-      <i class="fas fa-hand-holding-usd" title="Purchasers"></i>
+      <i class="fas fa-users" title="Purchasers"></i>
     <% end %>
 
     <%= link_to destroy_user_session_path, method: :delete do %>
