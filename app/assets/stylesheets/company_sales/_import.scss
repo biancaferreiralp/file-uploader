@@ -3,6 +3,16 @@
     border: 0;
   }
 
+  .modal-content {
+    border: 0;
+    border-radius: 10px;
+  }
+
+  .upload-header {
+    display: flex;
+    align-items: center;
+  }
+
   .upload {
     width: 100%;
     padding: 30px;
