@@ -46,34 +46,5 @@
       padding-left: 5px;
       color: white;
     }
-
-    .tags, .upload-date, .item-price, .gross-income {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .tag {
-      width: 80px;
-      height: 24px;
-      border-radius: 10px;
-      font-size: 12px;
-      font-weight: 400;
-    }
-
-    .upload-date {
-      background-color: $light-purple;
-      color: $purple;
-    }
-
-    .item-price {
-      background-color: $light-gray;
-      color: $black;
-    }
-
-    .gross-income {
-      background-color: $light-green;
-      color: $green;
-    }
   }
 }

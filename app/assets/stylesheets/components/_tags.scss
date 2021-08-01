@@ -1,0 +1,28 @@
+.tags, .tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tag {
+  width: 80px;
+  height: 24px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.purple-tag {
+  background-color: $light-purple;
+  color: $purple;
+}
+
+.gray-tag {
+  background-color: $light-gray;
+  color: $black;
+}
+
+.green-tag {
+  background-color: $light-green;
+  color: $green;
+}

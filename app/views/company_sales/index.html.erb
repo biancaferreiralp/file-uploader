@@ -62,7 +62,7 @@
   <div class="company-sales">
     <h3>Records</h3>
 
-    <table class="table-hover">
+    <table>
       <thead>
         <tr>
           <th class="text-center">UPLOAD DATE</th>
@@ -80,7 +80,7 @@
         <% @company_sales.each do |s| %>
           <tr>
             <td class="tags">
-              <div class="upload-date tag">
+              <div class="tag purple-tag">
                 <%= s.created_at.to_date.strftime("%d %b %y") %>
               </div>
             </td>
@@ -92,7 +92,7 @@
             </td>
             <td><%= s.item_description %></td>
             <td class="tags">
-              <div class="item-price tag">
+              <div class="tag gray-tag">
                 <%= "$ #{s.item_price}" %>
               </div>
             </td>
@@ -105,7 +105,7 @@
               <% end %>
             </td>
             <td class="tags">
-              <div class="gross-income tag">
+              <div class="tag green-tag">
                 <%= "$ #{s.gross_income}" %>
               </div>
             </td>
