@@ -10,7 +10,6 @@
 
 // Your CSS partials
 @import "components/index";
-@import "company_sales/index";
 
 .content {
   display: flex;
@@ -23,7 +22,31 @@
     width: 95%;
 
     .dashboard {
-      padding: 50px 40px 10px;
+      padding: 65px 40px 30px;
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+
+        h6 {
+          font-weight: 400;
+          padding: 0 10px;
+        }
+
+        .btn {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          p {
+            margin-bottom: 0;
+          }
+
+          .fas {
+            font-size: 15px;
+          }
+        }
+      }
     }
 
     h1 {
