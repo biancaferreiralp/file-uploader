@@ -10,6 +10,8 @@ To see the technical test's full description and requirements, go to `public/tec
 
 To install and run the application, the following steps are necessary:
 
+- Access the repo folder
+- `git init` (if you've downloaded as zip)
 - `bundle install`
 - `yarn install`
 - `rails db:create db:migrate`
