@@ -1,50 +1,115 @@
-<%= link_to 'All merchants', merchants_path %>
-<%= link_to 'All purchasers', purchasers_path %>
-
-<h3>Import file</h3>
+<!-- <h3>Import file</h3>
 <%= form_tag import_company_sales_path, multipart: true do %>
   <%= file_field_tag :file, required: true %>
   <%= submit_tag 'Upload' %>
-<% end %>
+<% end %> -->
 
-<table>
-  <thead>
-    <tr>
-      <th>sales</th>
-      <td><%= @company_sales.count %></td>
+<div class="company-sales">
+  <h1>Company Sales</h1>
 
-      <th>purchasers</th>
-      <td><%= @purchasers.count %></td>
+  <div class="overview">
+    <h3>Overview</h3>
 
-      <th>merchants</th>
-      <td><%= @merchants.count %></td>
+    <div class="overview-cards">
+      <div class="overview-card card-one">
+        <div class="icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
 
-      <th>total income</th>
-      <td><%= @total_income %></td>
-    </tr>
+        <div class="info">
+          <p>Total Income</p>
+          <h4>$ <%= @total_income %></h4>
+        </div>
+      </div>
 
-    <tr>
-      <th>purchaser name</th>
-      <th>item description</th>
-      <th>item price</th>
-      <th>purchase count</th>
-      <th>merchant address</th>
-      <th>merchant name</th>
-      <th>gross income</th>
-    </tr>
-  </thead>
+      <div class="overview-card card-two">
+        <div class="icon">
+          <i class="fas fa-receipt"></i>
+        </div>
 
-  <tbody>
-    <% @company_sales.each do |s| %>
-      <tr>
-        <td><%= link_to s.purchaser_name, purchaser_path(s.purchaser.id) %></td>
-        <td><%= s.item_description %></td>
-        <td><%= s.item_price %></td>
-        <td><%= s.purchase_count %></td>
-        <td><%= s.merchant_address %></td>
-        <td><%= link_to s.merchant_name, merchant_path(s.merchant.id) %></td>
-        <td><%= s.gross_income %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <div class="info">
+          <p>Total Sales</p>
+          <h4><%= @company_sales.count %></h4>
+        </div>
+      </div>
+
+      <div class="overview-card card-three">
+        <div class="icon">
+          <i class="fas fa-hand-holding-usd"></i>
+        </div>
+
+        <div class="info">
+          <p>Total Purchasers</p>
+          <h4><%= @purchasers.count %></h4>
+        </div>
+      </div>
+
+      <div class="overview-card card-four">
+        <div class="icon">
+          <i class="fas fa-users"></i>
+        </div>
+
+        <div class="info">
+          <p>Total Merchants</p>
+          <h4><%= @merchants.count %></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="company-sales-records">
+    <h3>Records</h3>
+
+    <table class="table-hover">
+      <thead>
+        <tr>
+          <th class="text-center">UPLOAD DATE</th>
+          <th>PURCHASER NAME</th>
+          <th>ITEM DESCRIPTION</th>
+          <th class="text-center">ITEM PRICE</th>
+          <th class="text-center">PURCHASE COUNT</th>
+          <th>MERCHANT ADDRESS</th>
+          <th>MERCHANT NAME</th>
+          <th class="text-center">GROSS INCOME</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @company_sales.each do |s| %>
+          <tr>
+            <td class="tags">
+              <div class="upload-date tag">
+                <%= s.created_at.to_date.strftime("%d %b %y") %>
+              </div>
+            </td>
+            <td>
+              <%= link_to purchaser_path(s.purchaser.id) do %>
+                <%= s.purchaser_name %>
+                <i class="fas fa-arrow-right"></i>
+              <% end %>
+            </td>
+            <td><%= s.item_description %></td>
+            <td class="tags">
+              <div class="item-price tag">
+                $ <%= s.item_price %>
+              </div>
+            </td>
+            <td class="text-center"><%= s.purchase_count %></td>
+            <td><%= s.merchant_address %></td>
+            <td>
+              <%= link_to merchant_path(s.merchant.id) do %>
+                <%= s.merchant_name %>
+                <i class="fas fa-arrow-right"></i>
+              <% end %>
+            </td>
+            <td class="tags">
+              <div class="gross-income tag">
+                $ <%= s.gross_income %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
