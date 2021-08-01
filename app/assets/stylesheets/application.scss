@@ -10,6 +10,7 @@
 
 // Your CSS partials
 @import "components/index";
+@import "devise/devise";
 
 .content {
   display: flex;
@@ -21,6 +22,10 @@
       .btn-primary {
         display: flex;
         align-items: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-radius: 5px;
+        color: $light-purple;
       }
     }
   }
@@ -29,7 +34,7 @@
     width: 95%;
 
     .dashboard {
-      padding: 55px 40px 30px;
+      padding: 55px 40px 10px;
 
       .header {
         display: flex;
