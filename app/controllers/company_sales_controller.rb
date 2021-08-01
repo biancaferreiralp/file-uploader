@@ -23,7 +23,7 @@ class CompanySalesController < ApplicationController
 
       company_sale = CompanySale.create(data)
     end
-    redirect_to root_sales_path
+    redirect_to root_path
   end
 
   private
