@@ -16,13 +16,20 @@
 
   .content-left {
     width: 5%;
+
+    .sidebar {
+      .btn-primary {
+        display: flex;
+        align-items: center;
+      }
+    }
   }
 
   .content-right {
     width: 95%;
 
     .dashboard {
-      padding: 65px 40px 30px;
+      padding: 55px 40px 30px;
 
       .header {
         display: flex;
