@@ -24,6 +24,6 @@ To use the application, it's necessary to create an account using the Sign Up fo
 
 With the created credentials, upload a file with the columns specified in the project (`purchaser name, item description, item price, purchase count, merchant address, merchant name`) on the Import modal and submit.
 
-You can find a valid example of the file at `public/technical_test/example_input.tab` to use.
+You can find a valid example of the file at `public/technical_test/example_input.tab`.
 
 Different views were created to the main models (Company Sales, Merchants and Purchasers), showing overviews about their data, their relationships and other general informations.
