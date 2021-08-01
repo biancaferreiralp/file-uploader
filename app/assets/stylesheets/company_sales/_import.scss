@@ -1,0 +1,14 @@
+.import {
+  .modal-header, .modal-footer {
+    border: 0;
+  }
+
+  .upload {
+    width: 100%;
+    padding: 30px;
+    border: 1px solid $light-purple;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 14px;
+  }
+}

@@ -1,11 +1,13 @@
-<!-- <h3>Import file</h3>
-<%= form_tag import_company_sales_path, multipart: true do %>
-  <%= file_field_tag :file, required: true %>
-  <%= submit_tag 'Upload' %>
-<% end %> -->
+<%= render 'import' %>
 
 <div class="dashboard">
-  <h1>Company Sales</h1>
+  <div class="header">
+    <h1>Company Sales</h1>
+    <div class="btn btn-primary" data-toggle="modal" data-target="#importModal">
+      <i class="fas fa-plus-circle mr-2"></i>
+      <p>Add Sales</p>
+    </div>
+  </div>
 
   <div class="overview">
     <h3>Overview</h3>
