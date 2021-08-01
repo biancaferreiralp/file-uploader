@@ -1,28 +1,44 @@
-<%= link_to 'Back', root_path %>
+<div class="dashboard">
+  <div class="header">
+    <h1>Merchants</h1>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>name</th>
-      <th>address</th>
-      <th>items</th>
-      <th>purchasers</th>
-      <th>sales</th>
-      <th>total income</th>
-    </tr>
-  </thead>
+  <div class="merchants">
+    <h3>Records</h3>
 
-  <tbody>
-    <% @merchants.each do |m| %>
-      <tr>
-        <td><%= m.name %></td>
-        <td><%= m.address %></td>
-        <td><%= m.items.count %></td>
-        <td><%= m.purchasers.count %></td>
-        <td><%= m.company_sales.count %></td>
-        <td><%= m.total_income %></td>
-        <td><%= link_to 'Detalhes', merchant_path(m.id) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <table>
+      <thead>
+        <tr>
+          <th>NAME</th>
+          <th>ADDRESS</th>
+          <th class="text-center">TOTAL ITEMS</th>
+          <th class="text-center">TOTAL PURCHASERS</th>
+          <th class="text-center">TOTAL SALES</th>
+          <th class="text-center">TOTAL INCOME</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @merchants.each do |m| %>
+          <tr>
+            <td>
+              <%= link_to merchant_path(m.id) do %>
+                <%= m.name %>
+                <i class="fas fa-arrow-right"></i>
+              <% end %>
+            </td>
+            <td><%= m.address %></td>
+            <td class="text-center"><%= m.items.count %></td>
+            <td class="text-center"><%= m.purchasers.count %></td>
+            <td class="text-center"><%= m.company_sales.count %></td>
+            <td class="tags">
+              <div class="tag green-tag">
+                <%= "$ #{m.total_income}" %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
