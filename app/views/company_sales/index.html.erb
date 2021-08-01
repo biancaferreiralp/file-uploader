@@ -4,7 +4,7 @@
   <%= submit_tag 'Upload' %>
 <% end %> -->
 
-<div class="company-sales">
+<div class="dashboard">
   <h1>Company Sales</h1>
 
   <div class="overview">
@@ -18,7 +18,7 @@
 
         <div class="info">
           <p>Total Income</p>
-          <h4>$ <%= @total_income %></h4>
+          <h4><%= "$ #{@total_income}" %></h4>
         </div>
       </div>
 
@@ -57,7 +57,7 @@
     </div>
   </div>
 
-  <div class="company-sales-records">
+  <div class="company-sales">
     <h3>Records</h3>
 
     <table class="table-hover">
@@ -91,7 +91,7 @@
             <td><%= s.item_description %></td>
             <td class="tags">
               <div class="item-price tag">
-                $ <%= s.item_price %>
+                <%= "$ #{s.item_price}" %>
               </div>
             </td>
             <td class="text-center"><%= s.purchase_count %></td>
@@ -104,7 +104,7 @@
             </td>
             <td class="tags">
               <div class="gross-income tag">
-                $ <%= s.gross_income %>
+                <%= "$ #{s.gross_income}" %>
               </div>
             </td>
           </tr>

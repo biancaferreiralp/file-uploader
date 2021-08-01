@@ -11,3 +11,15 @@
 // Your CSS partials
 @import "components/index";
 @import "company_sales/index";
+
+.content {
+  display: flex;
+
+  .content-left {
+    width: 5%;
+  }
+
+  .content-right {
+    width: 95%;
+  }
+}
