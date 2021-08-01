@@ -67,7 +67,7 @@
       <table>
         <thead>
           <tr>
-            <th class="text-center">UPLOAD DATE</th>
+            <th class="text-center pl-1">UPLOAD DATE</th>
             <th>PURCHASER NAME</th>
             <th>ITEM DESCRIPTION</th>
             <th class="text-center">ITEM PRICE</th>
@@ -81,7 +81,7 @@
         <tbody>
           <% @company_sales.each do |s| %>
             <tr>
-              <td class="tags">
+              <td class="tags pl-1">
                 <div class="tag purple-tag">
                   <%= s.created_at.to_date.strftime("%d %b %y") %>
                 </div>
@@ -100,12 +100,7 @@
               </td>
               <td class="text-center"><%= s.purchase_count %></td>
               <td><%= s.merchant_address %></td>
-              <td>
-                <%= link_to merchant_path(s.merchant.id) do %>
-                  <%= s.merchant_name %>
-                  <i class="fas fa-arrow-right"></i>
-                <% end %>
-              </td>
+              <td><%= s.merchant_name %></td>
               <td class="tags">
                 <div class="tag green-tag">
                   <%= "$ #{s.gross_income}" %>

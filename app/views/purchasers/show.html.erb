@@ -1,65 +1,136 @@
-<h1><%= @purchaser.name %></h1>
+<div class="dashboard">
+  <div class="header">
+    <h1><%= @purchaser.name %></h1>
 
-<%= link_to 'Home', root_path %>
-<%= link_to 'Back To Purchasers', purchasers_path %>
+    <div class="dashboard-links">
+      <%= link_to 'Back to Purchasers', purchasers_path, class: "dashboard-link" %>
+    </div>
+  </div>
 
-<h4>Merchants</h4>
-<table>
-  <thead>
-    <tr>
-      <th>name</th>
-      <th>address</th>
-      <th>purchases</th>
-      <th>total spent</th>
-    </tr>
-  </thead>
+  <div class="purchasers">
+    <div class="overview">
+      <h3>Overview</h3>
 
-  <tbody>
-    <% @merchants.each do |m| %>
-      <tr>
-        <td><%= link_to m.name, merchant_path(m.id) %></td>
-        <td><%= m.address %></td>
-        <td><%= m.company_sales.where(purchaser_id: @purchaser.id).count %></td>
-        <td><%= @purchaser.total_spent_on_company(m) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <div class="overview-cards">
+        <div class="overview-card total-income">
+          <div class="icon">
+            <i class="fas fa-chart-bar"></i>
+          </div>
 
-<h4>Purchases</h4>
-<table>
-  <thead>
-    <tr>
-      <th>purchases</th>
-      <td><%= @purchases.count %></td>
+          <div class="info">
+            <p>Total Spent</p>
+            <h4><%= "$ #{@purchaser.total_spent}" %></h4>
+          </div>
+        </div>
 
-      <th>merchants</th>
-      <td><%= @merchants.count %></td>
+        <div class="overview-card">
+          <div class="icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
 
-      <th>total spent</th>
-      <td><%= @purchaser.total_spent %></td>
-    </tr>
+          <div class="info">
+            <p>Total Purchases</p>
+            <h4><%= @purchases.count %></h4>
+          </div>
+        </div>
 
-    <tr>
-      <th>item description</th>
-      <th>item price</th>
-      <th>purchase count</th>
-      <th>merchant address</th>
-      <th>merchant name</th>
-      <th>paid</th>
-    </tr>
-  </thead>
+        <div class="overview-card">
+          <div class="icon">
+            <i class="fas fa-users"></i>
+          </div>
 
-  <tbody>
-    <% @purchases.each do |p| %>
-      <tr>
-        <td><%= p.item_description %></td>
-        <td><%= p.item_price %></td>
-        <td><%= p.purchase_count %></td>
-        <td><%= p.merchant_address %></td>
-        <td><%= link_to p.merchant_name, merchant_path(p.merchant.id) %></td>
-        <td><%= p.gross_income %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          <div class="info">
+            <p>Total Merchants</p>
+            <h4><%= @merchants.count %></h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="company-sales">
+      <h3>Purchases</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th class="text-center pl-1">UPLOAD DATE</th>
+            <th>PURCHASER NAME</th>
+            <th>ITEM DESCRIPTION</th>
+            <th class="text-center">ITEM PRICE</th>
+            <th class="text-center">PURCHASE COUNT</th>
+            <th>MERCHANT ADDRESS</th>
+            <th>MERCHANT NAME</th>
+            <th class="text-center">GROSS INCOME</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @purchases.each do |p| %>
+            <tr>
+              <td class="tags pl-1">
+                <div class="tag purple-tag">
+                  <%= p.created_at.to_date.strftime("%d %b %y") %>
+                </div>
+              </td>
+              <td><%= p.purchaser_name %></td>
+              <td><%= p.item_description %></td>
+              <td class="tags">
+                <div class="tag gray-tag">
+                  <%= "$ #{p.item_price}" %>
+                </div>
+              </td>
+              <td class="text-center"><%= p.purchase_count %></td>
+              <td><%= p.merchant_address %></td>
+              <td>
+                <%= link_to merchant_path(p.merchant.id) do %>
+                  <%= p.merchant_name %>
+                  <i class="fas fa-arrow-right"></i>
+                <% end %>
+              </td>
+              <td class="tags">
+                <div class="tag green-tag">
+                  <%= "$ #{p.gross_income}" %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="merchants">
+      <h3>Merchants</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>NAME</th>
+            <th>ADDRESS</th>
+            <th class="text-center">TOTAL PURCHASES</th>
+            <th class="text-center">TOTAL SPENT</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @merchants.each do |m| %>
+            <tr>
+              <td>
+                <%= link_to merchant_path(m.id) do %>
+                  <%= m.name %>
+                  <i class="fas fa-arrow-right"></i>
+                <% end %>
+              </td>
+              <td><%= m.address %></td>
+              <td class="text-center"><%= m.company_sales.where(purchaser_id: @purchaser.id).count %></td>
+              <td class="tags">
+                <div class="tag purple-tag">
+                  <%= "$ #{@purchaser.total_spent_on_company(m)}" %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

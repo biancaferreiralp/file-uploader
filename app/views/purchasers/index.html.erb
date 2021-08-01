@@ -1,22 +1,40 @@
-<%= link_to 'Back', root_path %>
+<div class="dashboard">
+  <div class="header">
+    <h1>Purchasers</h1>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>name</th>
-      <th>purchases</th>
-      <th>total spent</th>
-    </tr>
-  </thead>
+  <div class="purchasers">
+    <h3>Records</h3>
 
-  <tbody>
-    <% @purchasers.each do |p| %>
-      <tr>
-        <td><%= p.name %></td>
-        <td><%= p.company_sales.count %></td>
-        <td><%= p.total_spent %></td>
-        <td><%= link_to 'Detalhes', purchaser_path(p.id) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <table>
+      <thead>
+        <tr>
+          <th>NAME</th>
+          <th class="text-center">TOTAL MERCHANTS</th>
+          <th class="text-center">TOTAL PURCHASES</th>
+          <th class="text-center">TOTAL SPENT</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @purchasers.each do |p| %>
+          <tr>
+            <td>
+              <%= link_to purchaser_path(p.id) do %>
+                <%= p.name %>
+                <i class="fas fa-arrow-right"></i>
+              <% end %>
+            </td>
+            <td class="text-center"><%= p.merchants.count %></td>
+            <td class="text-center"><%= p.company_sales.count %></td>
+            <td class="tags">
+              <div class="tag purple-tag">
+                <%= "$ #{p.total_spent}" %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
